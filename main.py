@@ -15,6 +15,10 @@ def string_similar(s1, s2):
 
 for i in a:
     for k in b:
-        print(i, k, string_similar(i, k))
+        if 1 > string_similar(i, k) > 0.5:
+            # print(i, k, string_similar(i, k))
+            samestr = i + k + str(string_similar(i, k)) + "\n\n"
+            with open("test.txt", "a+") as f:
+                f.write(samestr)
 
 
