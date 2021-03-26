@@ -41,3 +41,15 @@ with open('½á¹û.txt', 'a') as f:
         if (r.index(i) % 2) == 0:
             f.write(i[0])
             f.write(i[1])
+
+import sys
+import t1
+from PyQt5.QtWidgets import QApplication, QMainWindow
+
+if __name__ == '__main__':
+    app = QApplication(sys.argv)
+    MainWindow = QMainWindow()
+    ui = t1.Ui_MainWindow()
+    ui.setupUi(MainWindow)
+    MainWindow.show()
+    sys.exit(app.exec_())
