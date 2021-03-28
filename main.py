@@ -58,14 +58,15 @@ class TextEditDemo(QWidget):
         #创建多行文本框
         self.textEdit=QTextEdit()
         #创建两个按钮
-        self.btnPress1=QPushButton('开始')
+        self.btnPress1=QPushButton('计算')
 
         #实例化垂直布局
         layout=QVBoxLayout()
         #相关控件添加到垂直布局中
         layout.addWidget(self.textEdit)
-        layout.addWidget(self.btnPress1)
+        self.textEdit.setPlaceholderText('将标题粘贴在此处，每行一个')
 
+        layout.addWidget(self.btnPress1)
 
         #设置布局
         self.setLayout(layout)
@@ -75,23 +76,23 @@ class TextEditDemo(QWidget):
 
 
     def btnPress1_clicked(self):
-        #以文本的形式输出到多行文本框
+        #获取多行文本框中内容
         hh = self.textEdit.toPlainText()
-        d = []
+
+        a = []
         for c in hh.split('\n'):
-            d.append(c)
-        e = d[:]
+            a.append(c)
+        b = a[:]
 
         r = []
 
-        for i in d:
-            for k in e:
-                samerate_str = "序号 " + str(d.index(i)) + " " + i + "\n" + "序号 " + str(e.index(k)) + " " + k + "\n"
+        for i in a:
+            for k in b:
+                samerate_str = "序号 " + str(a.index(i)) + " " + i + "\n" + "序号 " + str(b.index(k)) + " " + k + "\n"
                 samerate_val = "相似度： " + str(string_similar(i, k))[0:4] + "\n\n"
                 samerate = (samerate_str, samerate_val)
                 if 1 > string_similar(i, k) > 0.55:
                     r.append(samerate)
-
 
         self.textEdit.clear()
 
@@ -101,10 +102,10 @@ class TextEditDemo(QWidget):
         # 指定第二个元素排序 降序
         r.sort(key=takesecond, reverse=True)
 
-        for i in r:
-            if (r.index(i) % 2) == 0:
-                self.textEdit.insertPlainText(i[0])
-                self.textEdit.insertPlainText(i[1])
+        for j in r:
+            if (r.index(j) % 2) == 0:
+                self.textEdit.insertPlainText(j[0])
+                self.textEdit.insertPlainText(j[1])
 
 
 if __name__ == '__main__':
