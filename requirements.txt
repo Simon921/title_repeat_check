@@ -1,0 +1,2 @@
+PyQt6~=6.0.3
+setuptools~=54.1.2

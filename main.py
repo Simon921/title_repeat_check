@@ -1,5 +1,9 @@
 # coding=gbk
 import difflib
+import sys
+import PyQt6
+from PyQt6.QtWidgets import QApplication, QWidget, QTextEdit, QVBoxLayout, QPushButton
+
 
 # f = open("标题.txt", mode="r", encoding='gbk')
 # a = f.readlines()
@@ -45,38 +49,35 @@ def string_similar(s1, s2):
 # with open('结果.txt', 'r') as l:
 #     qq = l.read()
 
-from PyQt6.QtWidgets import QApplication,QWidget,QTextEdit,QVBoxLayout,QPushButton
-import sys
 
 class TextEditDemo(QWidget):
-    def __init__(self,parent=None):
+    def __init__(self, parent=None):
         super(TextEditDemo, self).__init__(parent)
         self.setWindowTitle('计算标题重复度 v1.1')
 
-        #定义窗口的初始大小
-        self.resize(600,400)
-        #创建多行文本框
-        self.textEdit=QTextEdit()
-        #创建两个按钮
-        self.btnPress1=QPushButton('计算')
+        # 定义窗口的初始大小
+        self.resize(600, 400)
+        # 创建多行文本框
+        self.textEdit = QTextEdit()
+        # 创建两个按钮
+        self.btnPress1 = QPushButton('计算')
 
-        #实例化垂直布局
-        layout=QVBoxLayout()
-        #相关控件添加到垂直布局中
+        # 实例化垂直布局
+        layout = QVBoxLayout()
+        # 相关控件添加到垂直布局中
         layout.addWidget(self.textEdit)
         self.textEdit.setPlaceholderText('将标题粘贴在此处，每行一个')
 
         layout.addWidget(self.btnPress1)
 
-        #设置布局
+        # 设置布局
         self.setLayout(layout)
 
-        #将按钮的点击信号与相关的槽函数进行绑定，点击即触发
+        # 将按钮的点击信号与相关的槽函数进行绑定，点击即触发
         self.btnPress1.clicked.connect(self.btnPress1_clicked)
 
-
     def btnPress1_clicked(self):
-        #获取多行文本框中内容
+        # 获取多行文本框中内容
         hh = self.textEdit.toPlainText()
 
         a = []
@@ -109,7 +110,7 @@ class TextEditDemo(QWidget):
 
 
 if __name__ == '__main__':
-    app=QApplication(sys.argv)
-    win=TextEditDemo()
+    app = QApplication(sys.argv)
+    win = TextEditDemo()
     win.show()
     sys.exit(app.exec())
